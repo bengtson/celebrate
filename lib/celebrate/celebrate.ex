@@ -37,6 +37,10 @@ defmodule Celebrate do
     GenServer.call(CelebrateServer, :get_celebrates)
   end
 
+  def reload do
+    GenServer.call(CelebrateServer, :reload)
+  end
+
   @doc """
   Returns a list of birthdays on the specified date and for the next n
   days.
@@ -46,6 +50,12 @@ defmodule Celebrate do
     |> Enum.filter(&(entry_in_window?(&1, date, days)))
   end
 
+  def get_upcoming_celebrates days do
+    {{year, month, day}, _time} = :calendar.local_time
+    {:ok, date} = Date.new year, month, day
+    Celebrate.get_celebrates_in_window date, days
+  end
+
   # --------- GenServer Callbacks
 
     @doc """
@@ -53,6 +63,11 @@ defmodule Celebrate do
     """
     def handle_call(:get_celebrates, _from, state) do
       {:reply, state, state}
+    end
+
+    def handle_call(:reload, _from, _state) do
+      table = load_file()
+      {:reply, :ok, table}
     end
 
   # ---------- Private Functions

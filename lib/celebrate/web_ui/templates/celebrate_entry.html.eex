@@ -1,0 +1,9 @@
+<tr>
+  <td style="padding: 2px 2px 2px 2px;"><%= month %></td>
+  <td style="text-align: right; padding: 2px 2px 2px 2px;"><%= day %></td>
+  <td style="padding: 2px 2px 2px 5px;"><%= year %></td>
+  <td><%= days %></td>
+  <td><%= type %></td>
+  <td><%= name %></td>
+  <td><%= age %></td>
+</tr>

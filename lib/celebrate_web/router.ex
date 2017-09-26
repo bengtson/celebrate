@@ -17,6 +17,7 @@ defmodule CelebrateWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/all", PageController, :all
   end
 
   # Other scopes may use custom stacks.

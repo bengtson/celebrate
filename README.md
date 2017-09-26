@@ -1,9 +1,26 @@
 # Celebrate
 
+This is a micro service that can be used by other applications.
+
+Celebrate should provide the following basic services:
+
+- List birthdays for given date.
+- List birthdays in a given date range.
+- List Anniversaries as well but allow for specification of either or both.
+- Provide a simple web interface to list birthdays.
+
+File format:
+
+  date :: dd-mmm-yyyy or dd-mmm or mmm-yyyy or mmm
+  name :: Michael Bengtson
+  type :: Birthday
+
+Define structure for events.
+
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.

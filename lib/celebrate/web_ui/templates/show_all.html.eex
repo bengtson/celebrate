@@ -1,0 +1,17 @@
+    <div>
+          <span style="font-size: 20px; font-style: normal; font-weight: lighter; font-family: 'Open Sans', sans-serif;">All important celebration dates ...</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 15px; font-style: normal; font-weight: lighter; font-family: 'Open Sans', sans-serif;"><a href="/">Show Upcoming Dates</a></span>
+    </div>
+
+    <div style="clear: both; height: 15px; "></div>
+
+    <div>
+      <table>
+        <tr>
+          <th colspan="3">Date</th>
+          <th>Celebration</th>
+          <th>Who</th>
+          <th>Years</th>
+        </tr>
+        <%= Wiring.get_list %>
+      </table>
+    </div>
