@@ -85,7 +85,7 @@ defmodule Celebrate do
   end
 
   def load_file do
-    "/Users/bengm0ra/Projects/Filelif/Compendiums/Celebrate/celebrates"
+    Application.fetch_env!(:celebrate, :celebrates_file)
     |> SprocksMapTable.read_file
     |> Enum.map(&create_structs/1)
     |> Enum.sort( fn(a,b) -> {a.month,a.day} <= {b.month,b.day} end )
