@@ -24,6 +24,7 @@ defmodule Celebrate do
   is held in the state as tips. tip_inches is amount of rain for each tip.
   """
   def init (:ok) do
+    CelebrateStatus.start()
     table = load_file()
     {:ok, table}
   end
@@ -132,4 +133,5 @@ defmodule Celebrate do
 #    IO.inspect {:str, part1, length}
     length
   end
+
 end
