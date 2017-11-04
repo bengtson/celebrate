@@ -32,7 +32,7 @@ defmodule CelebrateStatus do
 
     stat = %Status{
       name: "Celebrate",
-      icon: get_icon("priv/static/images/celebrate.png"),
+      icon: get_icon("priv/static/images/newcelebrate.png"),
       status: "Celebrate Running",
       metrics: celebrates,
       state: :nominal,
