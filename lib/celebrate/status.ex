@@ -35,7 +35,8 @@ defmodule CelebrateStatus do
       icon: get_icon("priv/static/images/celebrate.png"),
       status: "Celebrate Running",
       metrics: celebrates,
-      state: :nominal
+      state: :nominal,
+      link: "http://10.0.1.202:4405"
     }
 
     with  {:ok, packet} <- Poison.encode(stat),

@@ -12,3 +12,7 @@ records:
     type :: Birthday
 
 This will be integrated into the Tack set of services on port 4405.
+
+## Versions
+
+Version 1.2 : Added status generation for the Tack Status System.
