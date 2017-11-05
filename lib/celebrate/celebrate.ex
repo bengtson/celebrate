@@ -47,8 +47,10 @@ defmodule Celebrate do
   days.
   """
   def get_celebrates_in_window date, days do
+
     GenServer.call(CelebrateServer, :get_celebrates)
     |> Enum.filter(&(entry_in_window?(&1, date, days)))
+    |> Enum.sort_by(&(days_until(&1,date)))
   end
 
   def get_upcoming_celebrates days do
@@ -72,6 +74,17 @@ defmodule Celebrate do
     end
 
   # ---------- Private Functions
+
+  # Returns the number of days from 'date' to the entry. Number will be
+  # positive since time does not go backwards.
+  def days_until entry, date do
+    {:ok, entry_date} = Date.new(date.year, entry.month, entry.day)
+    days = Date.diff(entry_date,date)
+    cond do
+      days >= 0 -> days
+      true -> days + 365
+    end
+  end
 
   def entry_in_window? entry, date, days do
     nil !=
