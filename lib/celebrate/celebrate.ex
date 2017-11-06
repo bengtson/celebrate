@@ -49,14 +49,14 @@ defmodule Celebrate do
   def get_celebrates_in_window date, days do
 
     GenServer.call(CelebrateServer, :get_celebrates)
-    |> Enum.filter(&(entry_in_window?(&1, date, days)))
+    |> Enum.filter(fn e -> days_until(e,date) <= days end)
     |> Enum.sort_by(&(days_until(&1,date)))
   end
 
   def get_upcoming_celebrates days do
     {{year, month, day}, _time} = :calendar.local_time
     {:ok, date} = Date.new year, month, day
-    Celebrate.get_celebrates_in_window date, days
+    get_celebrates_in_window date, days
   end
 
   # --------- GenServer Callbacks
@@ -84,18 +84,6 @@ defmodule Celebrate do
       days >= 0 -> days
       true -> days + 365
     end
-  end
-
-  def entry_in_window? entry, date, days do
-    nil !=
-      date.year..date.year+1
-      |> Enum.map(fn y -> Date.new(y, entry.month, entry.day) |> elem(1) end)
-      |> Enum.find(&(date_in_window(&1, date, days)))
-  end
-
-  def date_in_window entry_date, date, days do
-    diff = Date.diff(entry_date, date)
-    diff < days && diff >= 0
   end
 
   def load_file do
