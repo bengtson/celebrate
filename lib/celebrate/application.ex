@@ -1,18 +1,18 @@
 defmodule Celebrate.Application do
-  use Application
-
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
-  def start(_type, _args) do
-    import Supervisor.Spec
+  @moduledoc false
 
-    # Define workers and child supervisors to be supervised
+  use Application
+
+  def start(_type, _args) do
+    # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(CelebrateWeb.Endpoint, []),
-      supervisor(Celebrate, []),
-      # Start your own worker by calling: Celebrate.Worker.start_link(arg1, arg2, arg3)
-      # worker(Celebrate.Worker, [arg1, arg2, arg3]),
+      CelebrateWeb.Endpoint,
+      Celebrate.Server
+      # Starts a worker by calling: Celebrate.Worker.start_link(arg)
+      # {Celebrate.Worker, arg},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

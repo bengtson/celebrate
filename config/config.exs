@@ -3,25 +3,28 @@
 #
 # This configuration file is loaded before any dependency and
 # is restricted to this project.
+
+# General application configuration
 use Mix.Config
 
 # Configures the endpoint
 config :celebrate, CelebrateWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "T/DmETSvE4ksD/j0mgYZTUDjjXXjlWrOjwpz16lB6zLDx01XrZqBhtxrHUYypdFH",
+  secret_key_base: "WwVVYgE4tPcquOz3c9rmw8jjSH+YNp8yBU+jHsLS5sgPmlG/IIM01Qe+IDkoItVR",
   render_errors: [view: CelebrateWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Celebrate.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Celebrate.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
 config :celebrate,
   celebrates_file: System.user_home() <> "/Projects/Filelif/Compendiums/Celebrate/celebrates"
 
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

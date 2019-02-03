@@ -14,7 +14,7 @@ defmodule CelebrateWeb.Router do
   end
 
   scope "/", CelebrateWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
     get "/all", PageController, :all
