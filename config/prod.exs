@@ -18,6 +18,9 @@ config :celebrate, CelebrateWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :celebrate,
+  celebrates_file: System.user_home() <> "/compendiums/celebrate/celebrates"
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

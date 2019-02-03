@@ -57,3 +57,6 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :celebrate,
+  celebrates_file: System.user_home() <> "/Projects/Filelif/Compendiums/Celebrate/celebrates"
