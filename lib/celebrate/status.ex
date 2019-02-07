@@ -20,12 +20,17 @@ defmodule CelebrateStatus do
   end
 
   def send_status do
+    ver_commit = Mix.Project.config()[:version] <> " " <> Celebrate.Server.commit()
+    vc_metric = %Metric{name: "Version Commit", value: ver_commit}
+
     celebrates =
       Celebrate.Server.get_upcoming_celebrates(60)
       |> Enum.take(5)
       |> Enum.map(fn e ->
         %Metric{name: e.name, value: "#{e.day} #{Wiring.get_short_month_name(e.month)}"}
       end)
+
+    celebrates = [vc_metric] ++ celebrates
 
     stat = %Status{
       name: "Celebrate",

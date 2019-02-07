@@ -13,6 +13,11 @@ records:
 
 This will be integrated into the Tack set of services on port 4405.
 
+## To Do
+
+Add warning and alarm based on how close the next date is.
+
 ## Versions
 
 Version 1.2 : Added status generation for the Tack Status System.
+Verions 1.3 : Changed favicon, added version / commit as status metric.

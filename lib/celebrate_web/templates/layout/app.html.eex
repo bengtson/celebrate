@@ -10,7 +10,7 @@
     <title>Tack Så Mycket : Celebrations</title>
     <link rel="stylesheet" href="<%= Routes.static_url(@conn, "/css/app.css") %>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">  </head>
-    <link rel="icon" type="image/png" href="<%= Routes.static_url(@conn, "/images/celebrate.png") %>" >
+    <link rel="icon" type="image/png" href="<%= Routes.static_url(@conn, "/images/dala.png") %>" >
   </head>
 
   <body style="background-image: url('/images/Tack Web Background.png'); background-repeat: no-repeat;">

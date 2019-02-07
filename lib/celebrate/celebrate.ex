@@ -1,5 +1,6 @@
 defmodule Celebrate.Server do
   use GenServer
+  require Logger
 
   @moduledoc """
   Birthdays keeps the contexts that define your domain
@@ -25,12 +26,20 @@ defmodule Celebrate.Server do
   is held in the state as tips. tip_inches is amount of rain for each tip.
   """
   def init(:ok) do
+    {rev, _i} = System.cmd("git", ["rev-parse", "HEAD"])
+    commit = rev |> String.slice(0..6)
+    Logger.info("Commit: #{commit}")
+
     CelebrateStatus.start()
     table = load_file()
-    {:ok, table}
+    {:ok, %{:table => table, :commit => commit}}
   end
 
   # --------- Client APIs
+
+  def commit() do
+    GenServer.call(CelebrateServer, :commit)
+  end
 
   @doc """
   Returns a list of birthday structures.
@@ -61,16 +70,20 @@ defmodule Celebrate.Server do
 
   # --------- GenServer Callbacks
 
+  def handle_call(:commit, _from, state) do
+    {:reply, state.commit, state}
+  end
+
   @doc """
   Returns list of birthday structures.
   """
   def handle_call(:get_celebrates, _from, state) do
-    {:reply, state, state}
+    {:reply, state.table, state}
   end
 
-  def handle_call(:reload, _from, _state) do
+  def handle_call(:reload, _from, state) do
     table = load_file()
-    {:reply, :ok, table}
+    {:reply, :ok, %{state | table: table}}
   end
 
   # ---------- Private Functions

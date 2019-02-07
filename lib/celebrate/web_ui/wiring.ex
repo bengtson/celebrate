@@ -89,7 +89,7 @@ defmodule Wiring do
     entry(month, c.day, c.year, c.type, c.name, get_age_today(c, c.year))
   end
 
-  def get_age_today(c, nil), do: ""
+  def get_age_today(_c, nil), do: ""
 
   def get_age_today(c, _) do
     {{y, m, d}, _t} = :calendar.local_time()
